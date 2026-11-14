@@ -1,0 +1,1377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ICG | Student Admission</title>
+
+<style>
+/* ICG HOME PAGE COLOURS */
+:root {
+    --beige: #F3E6D7;
+    --purple: #9B7ED6;
+    --deep-purple: #39264F;
+    --lemon: #E4FF3B;
+    --white: #FFFFFF;
+    --text: #292333;
+    --muted: #6D6676;
+    --background: #FFFCF8;
+    --card: #FFFFFF;
+    --border: #E8DCCF;
+    --shadow: 0 12px 35px rgba(57,38,79,.10);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    transition: .3s;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+/* NAVIGATION BAR */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    width: 90%;
+    max-width: 1200px;
+    min-height: 82px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-area img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.logo-text h2 {
+    color: var(--deep-purple);
+    font-size: 25px;
+}
+
+.logo-text p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #7655B4;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.theme-button {
+    padding: 9px 11px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--card);
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.menu-button {
+    display: none;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--card);
+    cursor: pointer;
+}
+
+/* PAGE INTRO */
+
+.page-banner {
+    background: linear-gradient(
+        120deg,
+        var(--beige),
+        #EAE0F7,
+        #F8F0E6
+    );
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.tag {
+    display: inline-block;
+    background: var(--lemon);
+    color: var(--deep-purple);
+    padding: 7px 15px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.page-banner h1 {
+    color: var(--deep-purple);
+    font-size: clamp(30px, 5vw, 45px);
+    margin: 15px 0 8px;
+}
+
+.page-banner h1 span {
+    color: #7655B4;
+}
+
+.page-banner p {
+    color: var(--muted);
+    max-width: 600px;
+    margin: auto;
+    font-size: 14px;
+}
+
+/* FORM CONTAINER */
+
+.form-container {
+    width: 92%;
+    max-width: 1000px;
+    margin: 40px auto 60px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.form-heading {
+    background: var(--deep-purple);
+    color: var(--white);
+    text-align: center;
+    padding: 25px 15px;
+}
+
+.form-heading h2 {
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+
+.form-heading p {
+    color: var(--beige);
+    font-size: 12px;
+}
+
+form {
+    padding: 28px;
+}
+
+/* FORM SECTIONS */
+
+.form-section {
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.section-title {
+    background: var(--beige);
+    color: var(--deep-purple);
+    padding: 13px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-content {
+    padding: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    min-width: 0;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label,
+.field-label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: var(--deep-purple);
+}
+
+input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--background);
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+}
+
+textarea {
+    min-height: 85px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(155,126,214,.15);
+}
+
+.options {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding-top: 7px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: var(--deep-purple);
+    width: 16px;
+    height: 16px;
+}
+
+/* PHOTO UPLOAD */
+
+.photo-box {
+    background: var(--background);
+    border: 2px dashed var(--purple);
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+}
+
+.photo-box p {
+    color: var(--deep-purple);
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.photo-box input {
+    max-width: 100%;
+}
+
+/* PHOTO PREVIEW */
+
+#photoPreview {
+    display: none;
+    width: 110px;
+    height: 130px;
+    object-fit: cover;
+    border: 2px solid var(--purple);
+    border-radius: 8px;
+    margin: 0 auto 12px;
+}
+
+/* COURSE TABLE */
+
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.course-table th,
+.course-table td {
+    padding: 13px 10px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+.course-table th {
+    background: var(--background);
+    color: var(--deep-purple);
+}
+
+.course-table th:not(:first-child),
+.course-table td:not(:first-child) {
+    text-align: center;
+    width: 105px;
+}
+
+.course-table input {
+    cursor: pointer;
+}
+
+.note {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+/* DECLARATION AND SIGNATURE */
+
+.declaration {
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.agreement {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.signature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.signature-line {
+    border-bottom: 1px solid var(--muted);
+    height: 35px;
+    margin-bottom: 8px;
+}
+
+.signature-grid p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* BUTTONS */
+
+.button-area {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn {
+    border: 2px solid transparent;
+    border-radius: 9px;
+    padding: 13px 22px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-primary {
+    background: var(--deep-purple);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: #7655B4;
+    transform: translateY(-2px);
+}
+
+.btn-lemon {
+    background: var(--lemon);
+    color: var(--deep-purple);
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: var(--deep-purple);
+    color: var(--deep-purple);
+}
+
+.btn-outline:hover {
+    background: var(--beige);
+}
+
+#formMessage {
+    display: none;
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 8px;
+    background: #EAF7D7;
+    color: #31530A;
+    font-size: 13px;
+}
+
+/* FOOTER */
+
+footer {
+    background: var(--deep-purple);
+    color: var(--white);
+    text-align: center;
+    padding: 28px 15px;
+}
+
+footer h3 {
+    color: var(--lemon);
+    margin-bottom: 8px;
+}
+
+footer p {
+    font-size: 12px;
+    margin: 4px;
+    color: var(--beige);
+}
+
+footer .footer-quote {
+    margin-top: 15px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* DARK MODE */
+
+body.dark-mode {
+    --background: #21192B;
+    --card: #30243D;
+    --text: #F5EDF9;
+    --muted: #C5B8D1;
+    --border: #51415F;
+    --beige: #40324D;
+    --deep-purple: #39264F;
+    --purple: #B49AE8;
+    --shadow: 0 12px 35px rgba(0,0,0,.25);
+}
+
+body.dark-mode .page-banner {
+    background: linear-gradient(120deg, #30243D, #39264F);
+}
+
+body.dark-mode .page-banner h1,
+body.dark-mode .section-title,
+body.dark-mode .form-group label,
+body.dark-mode .field-label {
+    color: #E4FF3B;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background: #21192B;
+    color: #F5EDF9;
+}
+
+body.dark-mode .course-table th {
+    background: #21192B;
+}
+
+/* ALTERNATE COLOUR THEMES */
+
+body.theme-blue {
+    --purple: #78A9E8;
+    --deep-purple: #193B65;
+    --lemon: #C9F0FF;
+    --beige: #DCEBFA;
+}
+
+body.theme-green {
+    --purple: #7FBF9B;
+    --deep-purple: #214D3A;
+    --lemon: #DFFF9A;
+    --beige: #E0F0E4;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .logo-text p {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 12px 0;
+    }
+
+    .logo-area {
+        margin-right: auto;
+    }
+
+    .logo-area img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .logo-text h2 {
+        font-size: 21px;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 0;
+        padding: 8px 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 12px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    .section-content {
+        padding: 14px;
+    }
+
+    .course-table {
+        font-size: 11px;
+    }
+
+    .course-table th,
+    .course-table td {
+        padding: 10px 5px;
+    }
+
+    .course-table th:not(:first-child),
+    .course-table td:not(:first-child) {
+        width: 65px;
+    }
+
+    .signature-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* PRINT */
+
+@media print {
+    header,
+    .page-banner,
+    .button-area,
+    footer {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+    }
+
+    form {
+        padding: 10px;
+    }
+
+    .form-section {
+        break-inside: avoid;
+    }
+
+    .form-heading {
+        background: #39264F !important;
+        color: white !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .section-title {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header>
+    <div class="navbar">
+
+        <a href="index.html" class="logo-area">
+            <img src="logo.png" alt="ICG Logo">
+
+            <div class="logo-text">
+                <h2>ICG</h2>
+                <p>Institute of Career and Guidance</p>
+            </div>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#courses">Courses</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="Enquiry_page.html">Enquiry</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="theme-button" id="themeToggle"
+                    type="button" title="Toggle dark mode">🌙</button>
+
+            <button class="theme-button" id="colorToggle"
+                    type="button" title="Change colour theme">🎨</button>
+
+            <button class="menu-button" id="menuToggle"
+                    type="button" aria-label="Open menu">☰</button>
+        </div>
+
+    </div>
+</header>
+
+<!-- PAGE INTRODUCTION -->
+
+<section class="page-banner">
+
+    <span class="tag">YOUR CAREER, OUR GUIDANCE</span>
+
+    <h1>Begin Your Journey <span>With ICG.</span></h1>
+
+    <p>
+        Take the first step towards your dream career.
+        Complete the admission form and choose the course
+        that matches your goals.
+    </p>
+
+</section>
+
+<!-- ADMISSION FORM -->
+
+<main class="form-container">
+
+    <div class="form-heading">
+        <h2>STUDENT ADMISSION FORM</h2>
+        <p>Institute of Career and Guidance · Tirunelveli</p>
+    </div>
+
+    <form id="admissionForm">
+
+        <!-- STUDENT BIO-DATA -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                01. Student Bio-Data
+            </div>
+
+            <div class="section-content">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="studentName">Student's Full Name *</label>
+                        <input type="text" id="studentName"
+                               name="studentName"
+                               placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parentName">
+                            Father's / Husband's Name *
+                        </label>
+                        <input type="text" id="parentName"
+                               name="parentName"
+                               placeholder="Enter name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="occupation">
+                            Father's / Husband's Occupation
+                        </label>
+                        <input type="text" id="occupation"
+                               name="occupation"
+                               placeholder="Enter occupation">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of Birth *</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="field-label">Gender *</span>
+
+                        <div class="options">
+                            <label>
+                                <input type="radio" name="gender"
+                                       value="Male" required> Male
+                            </label>
+
+                            <label>
+                                <input type="radio" name="gender"
+                                       value="Female"> Female
+                            </label>
+
+                            <label>
+                                <input type="radio" name="gender"
+                                       value="Other"> Other
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bloodGroup">Blood Group</label>
+
+                        <select id="bloodGroup" name="bloodGroup">
+                            <option value="">Select blood group</option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                            <option>Not Known</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="address">
+                            Address for Communication *
+                        </label>
+                        <textarea id="address" name="address"
+                                  placeholder="Enter your complete address"
+                                  required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qualification">
+                            Educational Qualification *
+                        </label>
+                        <input type="text" id="qualification"
+                               name="qualification"
+                               placeholder="12th / Degree / Other"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="institution">
+                            Institution Studied / Studying
+                        </label>
+                        <input type="text" id="institution"
+                               name="institution"
+                               placeholder="School / College name">
+                    </div>
+
+                    <div class="form-group">
+                        <span class="field-label">Are you employed?</span>
+
+                        <div class="options">
+                            <label>
+                                <input type="radio" name="employed"
+                                       value="Yes"> Yes
+                            </label>
+
+                            <label>
+                                <input type="radio" name="employed"
+                                       value="No"> No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="employmentDetails">
+                            Employment Details (if applicable)
+                        </label>
+                        <input type="text" id="employmentDetails"
+                               name="employmentDetails"
+                               placeholder="Job / Organisation">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT DETAILS -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                02. Contact Details
+            </div>
+
+            <div class="section-content">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number *</label>
+                        <input type="tel" id="mobile" name="mobile"
+                               inputmode="numeric"
+                               pattern="[0-9]{10}" maxlength="10"
+                               placeholder="10-digit mobile number"
+                               title="Enter a 10-digit mobile number"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email"
+                               placeholder="example@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="place">Place *</label>
+                        <input type="text" id="place" name="place"
+                               placeholder="Enter your place" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="applicationDate">Application Date *</label>
+                        <input type="date" id="applicationDate"
+                               name="applicationDate" required>
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="photo">
+                            Recent Colour Passport-Size Photograph
+                        </label>
+
+                        <div class="photo-box">
+
+                            <img id="photoPreview"
+                                 alt="Selected passport-size photo preview">
+
+                            <p>Upload Your Photograph</p>
+
+                            <input type="file" id="photo" name="photo"
+                                   accept="image/png,image/jpeg">
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- COURSE SELECTION -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                03. Course Selection
+            </div>
+
+            <div class="section-content">
+
+                <p class="note">
+                    Select at least one course and choose your preferred
+                    batch. You can select more than one course if required.
+                </p>
+
+                <table class="course-table">
+
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Morning</th>
+                            <th>Evening</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Bank Officer / Clerical</td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="Bank Officer / Clerical - Morning"
+                                       aria-label="Bank course morning">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="Bank Officer / Clerical - Evening"
+                                       aria-label="Bank course evening">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Railway - Technical / Non-Technical</td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="Railway - Morning"
+                                       aria-label="Railway morning">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="Railway - Evening"
+                                       aria-label="Railway evening">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>TNPSC - All Groups</td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="TNPSC - Morning"
+                                       aria-label="TNPSC morning">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="TNPSC - Evening"
+                                       aria-label="TNPSC evening">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>SSC - Matric / Graduate Level</td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="SSC - Morning"
+                                       aria-label="SSC morning">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="SSC - Evening"
+                                       aria-label="SSC evening">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Police / SI Examination</td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="Police / SI - Morning"
+                                       aria-label="Police course morning">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="courses"
+                                       value="Police / SI - Evening"
+                                       aria-label="Police course evening">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+
+        <!-- DECLARATION -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                04. Declaration & Signature
+            </div>
+
+            <div class="section-content">
+
+                <p class="declaration">
+                    I declare that the information provided in this
+                    admission form is true and correct to the best of
+                    my knowledge. I agree to follow the rules and
+                    regulations of the Institute of Career and Guidance.
+                </p>
+
+                <label class="agreement">
+                    <input type="checkbox" id="declaration" required>
+
+                    <span>
+                        I confirm that the information given above is
+                        correct and accept the declaration. *
+                    </span>
+                </label>
+
+                <div class="signature-grid">
+
+                    <div>
+                        <div class="signature-line"></div>
+                        <p>Place / Date</p>
+                    </div>
+
+                    <div>
+                        <div class="signature-line"></div>
+                        <p>Candidate's Signature</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- OFFICE USE -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                05. For Office Use Only
+            </div>
+
+            <div class="section-content">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="admissionNumber">
+                            Admission Number
+                        </label>
+                        <input type="text" id="admissionNumber"
+                               name="admissionNumber">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="approvedBatch">Approved Batch</label>
+                        <select id="approvedBatch" name="approvedBatch">
+                            <option value="">Select batch</option>
+                            <option>Morning</option>
+                            <option>Evening</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feeStatus">Fee / Payment Status</label>
+                        <input type="text" id="feeStatus" name="feeStatus">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="verifiedBy">Verified By</label>
+                        <input type="text" id="verifiedBy" name="verifiedBy">
+                    </div>
+
+                </div>
+
+                <div class="signature-grid">
+
+                    <div>
+                        <div class="signature-line"></div>
+                        <p>Office Staff Signature</p>
+                    </div>
+
+                    <div>
+                        <div class="signature-line"></div>
+                        <p>Authorised Signature</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FORM BUTTONS -->
+
+        <div class="button-area">
+
+            <button type="submit" class="btn btn-primary">
+                Submit Admission Form
+            </button>
+
+            <button type="button" class="btn btn-lemon"
+                    onclick="window.print()">
+                Print / Save as PDF
+            </button>
+
+            <button type="reset" class="btn btn-outline">
+                Clear Form
+            </button>
+
+        </div>
+
+        <div id="formMessage" role="status"></div>
+
+    </form>
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>ICG - Institute of Career and Guidance</h3>
+
+    <p>Tirunelveli - 1</p>
+    <p>Phone: 0462-2334242</p>
+    <p>Email: icgtvltown@gmail.com</p>
+
+    <p class="footer-quote">
+        "There is no substitute for hard work."
+    </p>
+
+    <p>EVERYTHING IS POSSIBLE · Knowledge is Power.</p>
+
+</footer>
+
+<script>
+
+/* MOBILE NAVIGATION */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function () {
+    navLinks.classList.toggle("active");
+
+    menuToggle.textContent =
+        navLinks.classList.contains("active") ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+        menuToggle.textContent = "☰";
+    });
+});
+
+
+/* DARK MODE - SAME PREFERENCE AS HOME PAGE */
+
+const themeToggle = document.getElementById("themeToggle");
+
+function applySavedTheme() {
+    let savedTheme = "light";
+
+    try {
+        savedTheme = localStorage.getItem("icgTheme") || "light";
+    } catch (error) {
+        // Use light mode if browser storage is unavailable.
+    }
+
+    document.body.classList.toggle(
+        "dark-mode",
+        savedTheme === "dark"
+    );
+
+    themeToggle.textContent =
+        savedTheme === "dark" ? "☀️" : "🌙";
+}
+
+applySavedTheme();
+
+themeToggle.addEventListener("click", function () {
+    const isDark = document.body.classList.toggle("dark-mode");
+
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+
+    try {
+        localStorage.setItem("icgTheme", isDark ? "dark" : "light");
+    } catch (error) {
+        // Theme works for this page even if it cannot be saved.
+    }
+});
+
+
+/* COLOUR THEME */
+
+const colorToggle = document.getElementById("colorToggle");
+
+const colorThemes = ["", "theme-blue", "theme-green"];
+let currentColorTheme = 0;
+
+function applySavedColorTheme() {
+    try {
+        const savedTheme = localStorage.getItem("icgColorTheme") || "";
+        const savedIndex = colorThemes.indexOf(savedTheme);
+
+        if (savedIndex !== -1) {
+            currentColorTheme = savedIndex;
+        }
+    } catch (error) {
+        currentColorTheme = 0;
+    }
+
+    document.body.classList.remove("theme-blue", "theme-green");
+
+    if (colorThemes[currentColorTheme]) {
+        document.body.classList.add(colorThemes[currentColorTheme]);
+    }
+}
+
+applySavedColorTheme();
+
+colorToggle.addEventListener("click", function () {
+    currentColorTheme = (currentColorTheme + 1) % colorThemes.length;
+
+    document.body.classList.remove("theme-blue", "theme-green");
+
+    if (colorThemes[currentColorTheme]) {
+        document.body.classList.add(colorThemes[currentColorTheme]);
+    }
+
+    try {
+        localStorage.setItem(
+            "icgColorTheme",
+            colorThemes[currentColorTheme]
+        );
+    } catch (error) {
+        // Colour changing still works for this page.
+    }
+});
+
+
+/* SET APPLICATION DATE */
+
+document.getElementById("applicationDate").value =
+    new Date().toLocaleDateString("en-CA");
+
+
+/* PASSPORT PHOTO PREVIEW */
+
+const photoInput = document.getElementById("photo");
+const photoPreview = document.getElementById("photoPreview");
+
+photoInput.addEventListener("change", function () {
+    const file = photoInput.files[0];
+
+    if (!file) {
+        photoPreview.style.display = "none";
+        return;
+    }
+
+    if (!["image/jpeg", "image/png"].includes(file.type)) {
+        alert("Please select a JPG or PNG image.");
+        photoInput.value = "";
+        photoPreview.style.display = "none";
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+        photoPreview.src = event.target.result;
+        photoPreview.style.display = "block";
+    };
+
+    reader.readAsDataURL(file);
+});
+
+
+/* ADMISSION FORM VALIDATION */
+
+const admissionForm = document.getElementById("admissionForm");
+const formMessage = document.getElementById("formMessage");
+
+admissionForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (!admissionForm.reportValidity()) {
+        return;
+    }
+
+    const selectedCourses =
+        admissionForm.querySelectorAll(
+            'input[name="courses"]:checked'
+        );
+
+    if (selectedCourses.length === 0) {
+        alert("Please select at least one course and batch.");
+        return;
+    }
+
+    formMessage.style.display = "block";
+
+    formMessage.textContent =
+        "The form is valid! This demo does not yet send or save admission details. Please print the form or save it as PDF.";
+
+    formMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+
+/* CLEAR FORM */
+
+admissionForm.addEventListener("reset", function () {
+    setTimeout(function () {
+        formMessage.style.display = "none";
+        photoPreview.style.display = "none";
+        photoPreview.removeAttribute("src");
+
+        document.getElementById("applicationDate").value =
+            new Date().toLocaleDateString("en-CA");
+    }, 0);
+});
+
+</script>
+
+</body>
+</html>

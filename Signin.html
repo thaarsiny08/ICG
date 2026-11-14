@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sign | ICG</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --beige: #F3E6D7;
+    --purple: #9B72E6;
+    --lemon: #E4FF3B;
+    --dark: #28232D;
+    --muted: #716775;
+    --white: #FFFDF9;
+    --border: #E6D9CB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Source Sans 3", sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button, input {
+    font: inherit;
+}
+
+/* HEADER */
+
+.header {
+    background: var(--beige);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    width: 90%;
+    max-width: 1200px;
+    min-height: 82px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.logo-text strong {
+    display: block;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 31px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.logo-text strong span {
+    color: var(--purple);
+}
+
+.logo-text small {
+    display: block;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.home-link {
+    border: 1px solid #DCCBB9;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.home-link:hover {
+    background: var(--lemon);
+}
+
+/* MAIN */
+
+.signup-section {
+    min-height: calc(100vh - 140px);
+    padding: 45px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(155,114,230,0.10),
+            transparent 35%
+        ),
+        var(--white);
+}
+
+.signup-container {
+    width: 100%;
+    max-width: 1050px;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 20px 60px rgba(40,35,45,0.09);
+}
+
+/* LEFT PANEL */
+
+.signup-art {
+    background: var(--beige);
+    position: relative;
+    overflow: hidden;
+    padding: 45px 35px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;   /* text starts at top, picture sits at bottom */
+    min-height: 790px;
+}
+
+.art-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 3;
+}
+
+.art-star {
+    color: #895FD2;
+    font-size: 58px;
+    margin-top: 30px;
+    line-height: 1;
+    position: relative;
+    z-index: 3;
+}
+
+.signup-art h1 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(43px, 5vw, 65px);
+    font-weight: 800;
+    letter-spacing: -3px;
+    line-height: 1;
+    margin: 20px 0;
+    position: relative;
+    z-index: 3;
+}
+
+.signup-art h1 span {
+    color: #895FD2;
+}
+
+.art-description {
+    color: var(--muted);
+    max-width: 290px;
+    font-size: 15px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 3;
+}
+
+.art-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+.art-tags span {
+    padding: 8px 10px;
+    border-radius: 5px;
+    background: var(--white);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.art-tags span:nth-child(2) {
+    background: var(--purple);
+    color: white;
+}
+
+.art-tags span:nth-child(3) {
+    background: var(--lemon);
+}
+
+/* Yellow circle (behind the picture) */
+.decoration {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: var(--lemon);
+    right: -70px;
+    bottom: -60px;
+    z-index: 1;
+}
+
+/* Abdul Kalam picture */
+.art-photo {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 92%;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* FORM PANEL */
+
+.signup-form-panel {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background: var(--lemon);
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #8057CE;
+}
+
+.signup-form-panel h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 38px;
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+    margin-top: 8px;
+}
+
+.signup-form-panel h2 span {
+    color: var(--purple);
+}
+
+.description {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 10px 0 25px;
+}
+
+/* INPUTS */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.form-group input {
+    width: 100%;
+    min-height: 47px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #FFFCF8;
+    outline: none;
+    font-size: 14px;
+    color: var(--dark);
+}
+
+.form-group input::placeholder {
+    color: #A49AA4;
+}
+
+.form-group input:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(155,114,230,0.14);
+}
+
+/* PASSWORD */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 65px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #8057CE;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* CHECKBOX */
+
+.terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 3px 0 20px;
+}
+
+.terms input {
+    margin-top: 4px;
+    accent-color: var(--purple);
+}
+
+.terms a {
+    color: #8057CE;
+    font-weight: 700;
+}
+
+/* BUTTON */
+
+.create-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 18px;
+    border: none;
+    border-radius: 9px;
+    background: var(--purple);
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.create-button span {
+    color: var(--lemon);
+    font-size: 22px;
+}
+
+.create-button:hover {
+    background: #8057CE;
+    transform: translateY(-2px);
+}
+
+.status {
+    font-size: 13px;
+    margin-top: 12px;
+    overflow-wrap: anywhere;
+}
+
+.status:empty {
+    display: none;
+}
+
+/* SIGN IN LINK */
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 16px;
+}
+
+.divider span {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.divider p {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.signin-link {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.signin-link a {
+    color: #8057CE;
+    font-weight: 800;
+}
+
+.signin-link a:hover {
+    text-decoration: underline;
+}
+
+.footer-note {
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 23px;
+}
+
+/* FOOTER */
+
+.footer {
+    background: var(--beige);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 16px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* TABLET */
+
+@media (max-width: 800px) {
+    .signup-container {
+        max-width: 550px;
+        grid-template-columns: 1fr;
+    }
+
+    .signup-art {
+        min-height: 280px;
+        padding: 30px;
+        justify-content: center;
+    }
+
+    /* picture hidden on small screens so it doesn't cover the text */
+    .art-photo {
+        display: none;
+    }
+
+    .art-star {
+        margin-top: 25px;
+        font-size: 42px;
+    }
+
+    .signup-art h1 {
+        font-size: 49px;
+        margin: 12px 0;
+    }
+
+    .art-tags {
+        margin-top: 25px;
+    }
+
+    .signup-form-panel {
+        padding: 32px;
+    }
+
+    .decoration {
+        width: 160px;
+        height: 160px;
+        right: -60px;
+        bottom: -50px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+    .navbar {
+        width: 92%;
+        min-height: 70px;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+    .logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .logo-text strong {
+        font-size: 25px;
+    }
+
+    .logo-text small {
+        font-size: 9px;
+    }
+
+    .home-link {
+        font-size: 11px;
+        padding: 8px;
+    }
+
+    .signup-section {
+        padding: 22px 12px;
+    }
+
+    .signup-container {
+        border-radius: 13px;
+    }
+
+    .signup-art {
+        min-height: 260px;
+        padding: 25px;
+    }
+
+    .signup-art h1 {
+        font-size: 45px;
+    }
+
+    .signup-form-panel {
+        padding: 25px 19px;
+    }
+
+    .signup-form-panel h2 {
+        font-size: 33px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-group input {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="navbar">
+
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="ICG Logo">
+
+            <span class="logo-text">
+                <strong>ICG<span>.</span></strong>
+                <small>Institute of Career and Guidance</small>
+            </span>
+        </a>
+
+        <a href="http://127.0.0.1:5500/ICG_Homepage.html" class="home-link">
+            ← Back to Home
+        </a>
+
+    </div>
+</header>
+
+<main>
+
+<section class="signup-section">
+
+    <div class="signup-container">
+
+        <!-- LEFT DESIGN -->
+        <div class="signup-art">
+
+            <span class="art-label">START YOUR JOURNEY</span>
+
+            <div class="art-star">✳</div>
+
+            <h1>
+                Your future.<br>
+                <span>Your start.</span>
+            </h1>
+
+            <p class="art-description">
+                Create your ICG account and take the first step
+                towards your learning and career goals.
+            </p>
+
+            <div class="art-tags">
+                <span>LEARN.</span>
+                <span>PREPARE.</span>
+                <span>ACHIEVE.</span>
+            </div>
+
+            <!-- yellow circle first, picture on top of it -->
+            <div class="decoration"></div>
+            <img src="kalam.png" alt="Dr. A.P.J. Abdul Kalam" class="art-photo">
+
+        </div>
+
+        <!-- SIGN UP FORM -->
+        <div class="signup-form-panel">
+
+            <div class="form-icon">✳</div>
+
+            <span class="section-label">NEW STUDENT ACCOUNT</span>
+
+            <h2>Create your<br>account<span>.</span></h2>
+
+            <p class="description">
+                Enter your details to get started with ICG.
+            </p>
+
+            <form id="signupForm">
+
+                <div class="form-group">
+                    <label for="fullname">Full name *</label>
+
+                    <input
+                        type="text"
+                        id="fullname"
+                        name="fullname"
+                        placeholder="Enter your full name"
+                        minlength="2"
+                        autocomplete="name"
+                        required>
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="email">Email address *</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Mobile number *</label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="10-digit number"
+                            pattern="[6-9][0-9]{9}"
+                            maxlength="10"
+                            inputmode="numeric"
+                            autocomplete="tel"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Create password *</label>
+
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="At least 8 characters"
+                            minlength="8"
+                            autocomplete="new-password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="password">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm password *</label>
+
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Enter your password again"
+                            minlength="8"
+                            autocomplete="new-password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="confirmPassword">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <label class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <span>
+                        I confirm that the details provided are correct
+                        and agree to be contacted by ICG regarding my account.
+                    </span>
+                </label>
+
+                <button type="submit" class="create-button">
+                    Create Account
+                    <span>↗</span>
+                </button>
+
+                <p id="status" class="status"
+                   role="status" aria-live="polite"></p>
+
+            </form>
+
+            <div class="divider">
+                <span></span>
+                <p>ALREADY REGISTERED?</p>
+                <span></span>
+            </div>
+
+            <p class="signin-link">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+
+            <p class="footer-note">
+                Institute of Career and Guidance · Tirunelveli
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+    © <span id="year"></span> ICG. All rights reserved.
+</footer>
+
+<script>
+/* CURRENT YEAR */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+/* SHOW OR HIDE PASSWORD */
+
+document.querySelectorAll(".toggle-password").forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const input = document.getElementById(button.dataset.target);
+
+        if (input.type === "password") {
+            input.type = "text";
+            button.textContent = "Hide";
+        } else {
+            input.type = "password";
+            button.textContent = "Show";
+        }
+
+    });
+
+});
+
+/* ACCOUNT FORM VALIDATION */
+
+const form = document.getElementById("signupForm");
+const status = document.getElementById("status");
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+    status.textContent = "";
+    status.style.color = "#8057CE";
+
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    const password = document.getElementById("password").value;
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    const phone = document.getElementById("phone").value.trim();
+
+    if (!/^[6-9][0-9]{9}$/.test(phone)) {
+        status.style.color = "#B42318";
+        status.textContent =
+            "Please enter a valid 10-digit Indian mobile number.";
+        return;
+    }
+
+    if (password.length < 8) {
+        status.style.color = "#B42318";
+        status.textContent =
+            "Your password must contain at least 8 characters.";
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        status.style.color = "#B42318";
+        status.textContent =
+            "Passwords do not match. Please try again.";
+        return;
+    }
+
+    status.textContent =
+        "Form validation successful! Connect an authentication service to create your account.";
+
+});
+</script>
+
+</body>
+</html>
